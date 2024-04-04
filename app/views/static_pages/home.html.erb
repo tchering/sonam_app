@@ -1,2 +1,12 @@
-<h1 class = "text-danger">StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<%= provide(:title, "HOME") %>
+    <div class="bg-light w-100 d-flex justify-content-center mb-3">
+        <div class="container w-75 text-center lightgrey p-4 rounded-3">
+            <h1 class="">REGISTER</h1>
+            <p class="lead">
+                This is the home page for the
+                <a href="https://www.railstutorial.org/"><b>Ruby on Rails Tutorial</b></a>
+                sample application
+            </p>
+           <%= link_to "Signup", "#", class: "btn btn-primary" %>
+        </div>
+    </div>
