@@ -1,39 +1,45 @@
 <% provide(:title, "Signup") %>
-<div class="container text-center w-100">
-    <div class="form-container container w-75 bg lightgrey">
-        <h1>SIGNUP</h1>
-        <div class="row">
-            <div class="col">
-                <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
-                    <% # This means that the form data will be nested under :user in the params hash %>
-                    <% # here when turbo is turned on by default then only part of page will be reloaded with ajax hence not showing error messages. %>
-                    <%= render "shared/error_messages" %>
-                    <div class="form-group">
-                        <%= f.label :name %>
-                        <%= f.text_field :name, class: "form-control", id: "user_name" %>
-                        <div id="name_error" style="display: none; color: red;">Name can't be blank</div>
-                    </div>
+<section class="vh-100" style="background-color: #508bfc;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-                    <div class="form-group">
-                        <%= f.label :email %>
-                        <%= f.email_field :email, class: "form-control", required: true, id: "user_email" %>
-                        <div id="email_error" style="display: none; color: red;">Email is invalid</div>
-                    </div>
+            <h3 class="mb-5">Signup</h3>
 
-                    <div class="form-group">
-                        <%= f.label :password %>
-                        <%= f.password_field :password, class: "form-control", id: "user_password" %>
-                        <div id="password_error" style="display: none; color: red;">Password must include at least one uppercase letter, one lowercase letter, and one number</div>
-                    </div>
+            <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
+              <%= render "shared/error_messages" %>
 
-                    <div class="form-group">
-                        <%= f.label :password_confirmation, "Confirmation" %>
-                        <%= f.password_field :password_confirmation, class: "form-control", id: "user_password_confirmation" %>
-                    </div>
+              <div class="form-outline mb-4">
+                <%= f.label :name, class: "form-label" %>
+                <%= f.text_field :name, class: "form-control form-control-lg", id: "user_name" %>
+                <div id="name_error" style="display: none; color: red;">Name can't be blank</div>
+              </div>
 
-                    <%= f.submit "Create my account", class: "btn btn-primary button" %>
-                <% end %>
-            </div>
+              <div class="form-outline mb-4">
+                <%= f.label :email, class: "form-label" %>
+                <%= f.email_field :email, class: "form-control form-control-lg", required: true, id: "user_email" %>
+                <div id="email_error" style="display: none; color: red;">Email is invalid</div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <%= f.label :password, class: "form-label" %>
+                <%= f.password_field :password, class: "form-control form-control-lg", id: "user_password" %>
+                <div id="password_error" style="display: none; color: red;">Password must include at least one uppercase letter, one lowercase letter, and one number</div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <%= f.label :password_confirmation, "Confirmation", class: "form-label" %>
+                <%= f.password_field :password_confirmation, class: "form-control form-control-lg", id: "user_password_confirmation" %>
+              </div>
+
+              <%= f.submit "Create my account", class: "btn btn-primary btn-lg btn-block" %>
+            <% end %>
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
+</section>

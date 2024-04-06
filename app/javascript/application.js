@@ -3,4 +3,8 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "popper";
 import "bootstrap";
-import "user_form";
+
+// test if javascript is working
+// document.addEventListener("turbo:load", () => {
+//   alert("JavaScript is working!");
+// });
