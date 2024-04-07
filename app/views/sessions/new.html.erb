@@ -17,6 +17,10 @@
                                 <%= f.label :password, class: "form-label", for: "typePasswordX-2" %>
                                 <%= f.password_field :password, id: "typePasswordX-2", class: "form-control form-control-lg" %>
                             </div>
+                            <%= f.label :remember_me, class: "form-check-label" do %>
+    <%= f.check_box :remember_me, class: "form-check-input" %>
+    Remember me
+<% end %> <br>
 
                             <%= f.submit "Login", class: "btn btn-primary btn-lg btn-block" %>
 
