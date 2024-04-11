@@ -14,6 +14,7 @@ admin:
   name: admin
   email: admin@gmail.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 non_admin:
   name: non_admin
