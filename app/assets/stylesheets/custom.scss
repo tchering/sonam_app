@@ -1,0 +1,38 @@
+.users {
+  list-style: none;
+  li {
+    border-bottom: 1px solid grey;
+    padding: 10px 0px;
+    overflow: auto;
+  }
+}
+
+
+
+.pagination .page-item .page-link {
+  color: #007bff; /* This can be any color you want for the text */
+  background-color: #fff; /* Background color for the links */
+  border: 1px solid #dee2e6; /* Border color for the links */
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s; /* Smooth transition for hover effects */
+}
+
+/* Hover state of the pagination links */
+.pagination .page-item .page-link:hover {
+  color: #fff; /* Text color for hover */
+  background-color: #7cb1eb; /* Background color for hover */
+  border-color: #007bff; /* Border color for hover */
+}
+
+/* Active state of the pagination link */
+.pagination .page-item.active .page-link {
+  color: #fff; /* Text color for active link */
+  background-color: #007bff; /* Background color for active link */
+  border-color: #007bff; /* Border color for active link */
+}
+
+/* Disabled state of the pagination link */
+.pagination .page-item.disabled .page-link {
+  color: #6c757d; /* Text color for disabled link */
+  background-color: #fff; /* Background color for disabled link */
+  border-color: #dee2e6; /* Border color for disabled link */
+}

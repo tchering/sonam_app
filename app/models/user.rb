@@ -9,7 +9,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
 
   has_secure_password
-  validates :password, length: { minimum: 5, maximum: 50 }, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+\z/, message: "must include at least one uppercase letter, one lowercase letter, and one number" }
+  validates :password, length: { minimum: 5, maximum: 50 },allow_nil: true, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+\z/, message: "must include at least one uppercase letter, one lowercase letter, and one number" }
 
   # Returns the hash digest of the given string.
   def User.digest(string)

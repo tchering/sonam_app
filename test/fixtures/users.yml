@@ -4,7 +4,18 @@ one:
   name: test User
   email: test@gmail.com
   password_digest: <%= User.digest('password') %>
-# two:
-#   name: MyString
-#   email: MyString
-#   password_digest: MyString
+
+two:
+  name: test User 2
+  email: test2@gmail.com
+  password_digest: <%= User.digest('password') %>
+
+admin:
+  name: admin
+  email: admin@gmail.com
+  password_digest: <%= User.digest('password') %>
+
+non_admin:
+  name: non_admin
+  email: noadmin@gmail.com
+  password_digest: <%= User.digest('password') %>

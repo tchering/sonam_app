@@ -11,32 +11,28 @@
             <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
               <%= render "shared/error_messages" %>
 
-              <div class="form-outline mb-4">
-                <%= f.label :name, class: "form-label" %>
-                <%= f.text_field :name, class: "form-control form-control-lg", id: "user_name" %>
-                <div id="name_error" style="display: none; color: red;">Name can't be blank</div>
+              <div class="form-floating mb-4">
+                <%= f.text_field :name, class: "form-control ", placeholder: "Name" %>
+                <%= f.label :name, 'Name', class: "form-label" %>
               </div>
 
-              <div class="form-outline mb-4">
-                <%= f.label :email, class: "form-label" %>
-                <%= f.email_field :email, class: "form-control form-control-lg", required: true, id: "user_email" %>
-                <div id="email_error" style="display: none; color: red;">Email is invalid</div>
+              <div class="form-floating mb-4">
+                <%= f.email_field :email, class: "form-control ", required: true,placeholder: "Email" %>
+                <%= f.label :email, 'Email', class: "form-label" %>
               </div>
 
-              <div class="form-outline mb-4">
-                <%= f.label :password, class: "form-label" %>
-                <%= f.password_field :password, class: "form-control form-control-lg", id: "user_password" %>
-                <div id="password_error" style="display: none; color: red;">Password must include at least one uppercase letter, one lowercase letter, and one number</div>
+              <div class="form-floating mb-4">
+                <%= f.password_field :password, class: "form-control ", placeholder: "Password" %>
+                <%= f.label :password, 'Password', class: "form-label" %>
               </div>
 
-              <div class="form-outline mb-4">
-                <%= f.label :password_confirmation, "Confirmation", class: "form-label" %>
-                <%= f.password_field :password_confirmation, class: "form-control form-control-lg", id: "user_password_confirmation" %>
+              <div class="form-floating mb-4">
+                <%= f.password_field :password_confirmation, class: "form-control ", placeholder: "Confirm Password" %>
+                <%= f.label :password_confirmation, 'Confirm Password', class: "form-label"%>
               </div>
 
               <%= f.submit "Create my account", class: "btn btn-primary btn-lg btn-block" %>
             <% end %>
-
           </div>
         </div>
       </div>

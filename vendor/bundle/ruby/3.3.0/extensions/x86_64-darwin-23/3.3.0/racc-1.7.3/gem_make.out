@@ -1,0 +1,18 @@
+current directory: /Users/sonamsherpa/sonam_app/vendor/bundle/ruby/3.3.0/gems/racc-1.7.3/ext/racc/cparse
+/Users/sonamsherpa/.rbenv/versions/3.3.0/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/sonamsherpa/sonam_app/vendor/bundle/ruby/3.3.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240409-11187-tnwuya sitelibdir\=./.gem.20240409-11187-tnwuya clean
+
+current directory: /Users/sonamsherpa/sonam_app/vendor/bundle/ruby/3.3.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240409-11187-tnwuya sitelibdir\=./.gem.20240409-11187-tnwuya
+compiling cparse.c
+linking shared-object racc/cparse.bundle
+
+current directory: /Users/sonamsherpa/sonam_app/vendor/bundle/ruby/3.3.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240409-11187-tnwuya sitelibdir\=./.gem.20240409-11187-tnwuya install
+/usr/bin/install -c -m 0755 cparse.bundle ./.gem.20240409-11187-tnwuya/racc
+
+current directory: /Users/sonamsherpa/sonam_app/vendor/bundle/ruby/3.3.0/gems/racc-1.7.3/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20240409-11187-tnwuya sitelibdir\=./.gem.20240409-11187-tnwuya clean

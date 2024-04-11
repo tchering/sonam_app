@@ -2,8 +2,13 @@ source "https://rubygems.org"
 
 ruby "3.3.0"
 gem "bootstrap"
-gem 'dartsass-sprockets'
+gem "dartsass-sprockets"
 gem "rails-controller-testing"
+#add font-awesome
+gem "font-awesome-rails"
+# will_paginate
+gem 'will_paginate-bootstrap4'
+gem 'will_paginate'
 
 gem "bcrypt"
 

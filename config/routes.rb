@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get "/about", to: "static_pages#about"
   get "/contact", to: "static_pages#contact"
 
-  get "/show/:id", to: "users#show"
+  # get "/show/:id", to: "users#show"
+  get "/edit/:id", to: "users#edit"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

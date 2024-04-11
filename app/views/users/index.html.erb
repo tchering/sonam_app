@@ -1,0 +1,37 @@
+<% provide(:title, "All users") %>
+
+<div class="all-users">
+    <h2 class="text-center"><%= fa_icon "users" %> All Users</h2>
+    <table class="table">
+        <tr>
+            <th>Profile <%= fa_icon "arrow-down" %> </th>
+            <th>Email<%= fa_icon "envelope" %> </th>
+        </tr>
+        <% @users.each do |user| %>
+        <tr>
+            <td>
+                <%= link_to user do %>
+                <%= gravatar_for user, size: 50 %>
+                <%= user.name %>
+                <% end %>
+            </td>
+            <td><%= user.email %></td>
+            <td>
+                <% if current_user.admin? && !current_user?(user) %>
+                <%= link_to user_path(user), method: :delete, data: { turbo_action: "replace", turbo_confirm: "Are you sure?" } do %>
+                <%= fa_icon "trash", style: "color:red;" %> 
+                <% end %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="pagination">
+        <%= will_paginate @users,
+                                         previous_label: fa_icon("arrow-left"),
+                                         next_label: fa_icon("arrow-right") %>
+    </div>
+</div>
