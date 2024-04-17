@@ -1,0 +1,10 @@
+<h1>Sonam App</h1>
+
+<%= link_to image_tag("ror.png", class: "navbar-brand", width: 200, height: 150), "#" %>
+<p>
+   Hi <%= @user.name %>
+</p>
+<p>
+  Welcome to Sonam APP. Click on the link below to activate your accout:
+</p>
+<%= link_to "Activate account", edit_account_activation_url(@user.activation_token, email: @user.email) %>

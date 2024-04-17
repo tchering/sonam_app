@@ -4,6 +4,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
     @user2 = users(:two)
+    @user.update_attribute(:activated, true)
+    @user2.update_attribute(:activated, true)
   end
 
   test "should get edit" do
@@ -54,12 +56,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   end
 
   # Users should not be able to update other users' profiles
-test "should redirect update when logged in as wrong user" do
-  log_in_as(@user2)
-  patch user_path(@user), params: { user: { name: "New Name", email: "new@example.com" } }
-  assert flash.empty?
-  assert_redirected_to root_url
-end
-
-
+  test "should redirect update when logged in as wrong user" do
+    log_in_as(@user2)
+    patch user_path(@user), params: { user: { name: "New Name", email: "new@example.com" } }
+    assert flash.empty?
+    assert_redirected_to root_url
+  end
 end

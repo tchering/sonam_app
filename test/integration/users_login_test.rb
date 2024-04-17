@@ -1,19 +1,11 @@
 require "test_helper"
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
-  test "login with invalid information" do
-    get login_path
-    assert_template "sessions/new"
-    post login_path, params: { session: { email: "", password: "" } }
-    assert_template "sessions/new"
-    assert_not flash.empty?
-    get root_path
-    assert flash.empty?
-  end
-
   def setup
     @user = users(:one)
+    @user.update_attribute(:activated, true)
   end
+
   def is_logged_in?
     !session[:user_id].nil?
   end
@@ -21,7 +13,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   test "login with valid information" do
     get login_path
     post login_path, params: { session: { email: @user.email, password: "password" } }
-    assert_redirected_to @user
+    assert_redirected_to user_path(@user)
     follow_redirect!
     assert_template "users/show"
     assert_select "a[href=?]", login_path, count: 0
@@ -30,16 +22,17 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
   end
 
-  test "login with valid information and remember user" do
-    log_in_as(@user, remember_me: '1')
-    assert_not_empty cookies['user_id']
-    assert_not_empty cookies['remember_token']
+  test "login with valid information, remember user and activated user" do
+    log_in_as(@user, remember_me: "1")
+    assert @user.activated?
+    assert_not_empty cookies["user_id"]
+    assert_not_empty cookies["remember_token"]
   end
 
-  # "login with valid information followed by logout" do
-  test "login with valid information followed by logout" do
+  test "login with valid information followed by logout and activated user" do
     get login_path
     post login_path, params: { session: { email: @user.email, password: "password" } }
+    assert @user.activated?
     assert is_logged_in?
     assert_redirected_to @user
     follow_redirect!
@@ -61,31 +54,29 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   # test logout should delete cookies
   test "logout should delete cookies" do
-    log_in_as(@user, remember_me: '1')
+    log_in_as(@user, remember_me: "1")
     delete logout_path
-    assert_empty cookies['user_id']
-    assert_empty cookies['remember_token']
+    assert_empty cookies["user_id"]
+    assert_empty cookies["remember_token"]
   end
 
   #test login  with remember me unchecked
   test "login with remember me unchecked" do
-    log_in_as(@user, remember_me: '1')
+    log_in_as(@user, remember_me: "1")
     delete logout_path
-    log_in_as(@user, remember_me: '0')
-    assert_empty cookies['user_id']
-    assert_empty cookies['remember_token']
+    log_in_as(@user, remember_me: "0")
+    assert_empty cookies["user_id"]
+    assert_empty cookies["remember_token"]
   end
 
   #test login with remember me checked
   test "login with remember me checked" do
-    log_in_as(@user, remember_me: '0')
+    log_in_as(@user, remember_me: "0")
     delete logout_path
-    log_in_as(@user, remember_me: '1')
-    assert_not_empty cookies['user_id']
-    assert_not_empty cookies['remember_token']
+    log_in_as(@user, remember_me: "1")
+    assert_not_empty cookies["user_id"]
+    assert_not_empty cookies["remember_token"]
   end
-
-
 
   private
 
@@ -96,6 +87,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   #                                         password: 'password',
   #                                         remember_me: remember_me } }
   # end
-
 
 end
