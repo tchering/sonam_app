@@ -89,20 +89,6 @@ Rails.application.configure do
   #   :enable_starttls_auto => true
   # }
 
-  # This is for gmail
-  # config.action_mailer.delivery_method = :smtp
-  # host = "sonam-app.herokuapp.com"
-  # config.action_mailer.default_url_options = { host: host }
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.gmail.com",
-  #   port: 587,
-  #   domain: "heroku.com",
-  #   user_name: ENV["GMAIL_USERNAME"],
-  #   password: ENV["GMAIL_PASSWORD"],
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  # }
-
   #This is for local
   #   config.action_mailer.delivery_method = :smtp
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
@@ -117,22 +103,26 @@ Rails.application.configure do
   # }
 
   #this is for mailertogo
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "sonam-app.herokuapp.com" }
-  mailertogo_host = ENV.fetch("MAILERTOGO_SMTP_HOST")
-  mailertogo_port = ENV.fetch("MAILERTOGO_SMTP_PORT", 587)
-  mailertogo_user = ENV.fetch("MAILERTOGO_SMTP_USER")
-  mailertogo_password = ENV.fetch("MAILERTOGO_SMTP_PASSWORD")
-  mailertogo_domain = ENV.fetch("MAILERTOGO_DOMAIN", "mydomain.com")
+  #    config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.default_url_options = { host: 'sonam-app.herokuapp.com'}
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV["MAILERTOGO_SMTP_HOST"],
+  #   port: 587,
+  #   domain: "heroku.com",
+  #   user_name: ENV["MAILERTOGO_SMTP_USER"],
+  #   password: ENV["MAILERTOGO_SMTP_PASSWORD"],
+  #   authentication: "plain",
+  #   enable_starttls_auto: true,
+  # }
 
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => mailertogo_host,
-    :port => mailertogo_port,
-    :user_name => mailertogo_user,
-    :password => mailertogo_password,
-    :domain => mailertogo_domain,
-    :authentication => :plain,
-    :enable_starttls_auto => true,
+    :user_name => ENV["MAILTRAP_USERNAME"],
+    :password => ENV["MAILTRAP_PASSWORD"],
+    :address => "sandbox.smtp.mailtrap.io",
+    :host => "sandbox.smtp.mailtrap.io",
+    :port => "2525",
+    :authentication => :login,
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
