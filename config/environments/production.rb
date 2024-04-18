@@ -116,6 +116,7 @@ Rails.application.configure do
   # }
 
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "sonam-app-b93ee43b86cc.herokuapp.com" }
   config.action_mailer.smtp_settings = {
     :user_name => ENV["MAILTRAP_USERNAME"],
     :password => ENV["MAILTRAP_PASSWORD"],
