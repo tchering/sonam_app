@@ -117,19 +117,23 @@ Rails.application.configure do
   # }
 
   #this is for mailertogo
-     config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'sonam-app.herokuapp.com'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "sonam-app.herokuapp.com" }
+  mailertogo_host = ENV.fetch("MAILERTOGO_SMTP_HOST")
+  mailertogo_port = ENV.fetch("MAILERTOGO_SMTP_PORT", 587)
+  mailertogo_user = ENV.fetch("MAILERTOGO_SMTP_USER")
+  mailertogo_password = ENV.fetch("MAILERTOGO_SMTP_PASSWORD")
+  mailertogo_domain = ENV.fetch("MAILERTOGO_DOMAIN", "mydomain.com")
+
   config.action_mailer.smtp_settings = {
-    address: ENV["MAILERTOGO_SMTP_HOST"],
-    port: 587,
-    domain: "heroku.com",
-    user_name: ENV["MAILERTOGO_SMTP_USER"],
-    password: ENV["MAILERTOGO_SMTP_PASSWORD"],
-    authentication: "plain",
-    enable_starttls_auto: true,
+    :address => mailertogo_host,
+    :port => mailertogo_port,
+    :user_name => mailertogo_user,
+    :password => mailertogo_password,
+    :domain => mailertogo_domain,
+    :authentication => :plain,
+    :enable_starttls_auto => true,
   }
-
-
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -149,4 +153,3 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
-
