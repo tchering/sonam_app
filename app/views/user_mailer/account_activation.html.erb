@@ -7,4 +7,6 @@
 <p>
   Welcome to Sonam APP. Click on the link below to activate your accout:
 </p>
-<%= link_to "Activate account", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%# <%= link_to "Activate account", edit_account_activation_url(@user.activation_token, email: @user.email) %> %>
+
+<%= link_to "Activate account", edit_account_activation_url(@user.activation_token, email: @user.email, host: "sonam-app-b93ee43b86cc.herokuapp.com") %>
