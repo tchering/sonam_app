@@ -128,7 +128,7 @@ Rails.application.configure do
 
   #MAILGUN
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: "https://sonam-app-b93ee43b86cc.herokuapp.com/" }
+  config.action_mailer.default_url_options = { host: "www.tweetme.online" }
   config.action_mailer.smtp_settings = {
     :user_name => ENV["MAILGUN_SMTP_LOGIN"],
     :password => ENV["MAILGUN_SMTP_PASSWORD"],
@@ -136,7 +136,7 @@ Rails.application.configure do
     :port => ENV["MAILGUN_SMTP_PORT"],
     :authentication => :plain,
     :enable_starttls_auto => true,
-    :domain => "sandbox655fbdf38106457187887ace63ab554c.mailgun.org",
+    :domain => "noreply.tweetme.online",
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

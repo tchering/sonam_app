@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "noreply@email.com"
+  default from: "support@tweetme.online"
   layout "mailer"
 end
