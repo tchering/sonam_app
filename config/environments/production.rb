@@ -115,15 +115,27 @@ Rails.application.configure do
   #   enable_starttls_auto: true,
   # }
 
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.default_url_options = { host: "sonam-app-b93ee43b86cc.herokuapp.com" }
+  # config.action_mailer.smtp_settings = {
+  #   :user_name => ENV["MAILTRAP_USERNAME"],
+  #   :password => ENV["MAILTRAP_PASSWORD"],
+  #   :address => "sandbox.smtp.mailtrap.io",
+  #   :host => "sandbox.smtp.mailtrap.io",
+  #   :port => "2525",
+  #   :authentication => :login,
+  # }
+
+  #MAILGUN
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "sonam-app-b93ee43b86cc.herokuapp.com" }
   config.action_mailer.smtp_settings = {
-    :user_name => ENV["MAILTRAP_USERNAME"],
-    :password => ENV["MAILTRAP_PASSWORD"],
-    :address => "sandbox.smtp.mailtrap.io",
-    :host => "sandbox.smtp.mailtrap.io",
-    :port => "2525",
-    :authentication => :login,
+    :user_name => ENV["MAILGUN_SMTP_LOGIN"],
+    :password => ENV["MAILGUN_SMTP_PASSWORD"],
+    :address => ENV["MAILGUN_SMTP_SERVER"],
+    :port => ENV["MAILGUN_SMTP_PORT"],
+    :authentication => :plain,
+    :enable_starttls_auto => true,
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

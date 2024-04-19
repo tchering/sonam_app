@@ -2,8 +2,13 @@
 
 one:
   name: test User
-  email: test@gmail.com
+  email: test123@gmail.com
   password_digest: <%= User.digest('password') %>
+  activation_digest: <%= User.digest('activation_token') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  admin: true
+  
 
 two:
   name: test User 2
@@ -13,7 +18,7 @@ two:
 admin:
   name: admin
   email: admin@gmail.com
-  password_digest: <%= User.digest('password') %>
+  password_digest: <%= User.digest('new_password') %>
   admin: true
 
 non_admin:

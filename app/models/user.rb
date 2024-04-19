@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token, :reset_token
   before_create :create_activation_digest
 
   # before_save { self.email = email.downcase }
@@ -62,9 +62,27 @@ class User < ApplicationRecord
   #   update_columns(activated: true, activated_at: Time.zone.now)
   # end
 
-  #this method is called in users_controller.rb
+  #this method is called in users_controller.rb and is defined in UserMailer
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
+  end
+
+  def create_reset_digest
+    #here reset_token is a virtual attribute and @reset_token is set to a random token
+    self.reset_token = User.new_token
+    #when we write update_attribute it will update the database without calling the validations
+    #But if we had used  self.reset_digest = User.digest(@reset_token) then we should call it somewhere like this user.save
+    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+  end
+
+  #this method is called in password_resets_controller.rb and is defined in UserMailer
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+  # Returns true if a password reset has expired.
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
   end
 
   private
@@ -74,7 +92,7 @@ class User < ApplicationRecord
   end
 
   def create_activation_digest
-    self.activation_token = User.new_token
-    self.activation_digest = User.digest(@activation_token)
+    self.activation_token = User.new_token #activation_token= is a virtual attribute and here @activation_token is set to a random token
+    self.activation_digest = User.digest(@activation_token) #activation_digest is a column in the database and here it is set to the digest of the activation_token
   end
 end
