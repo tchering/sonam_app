@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+#here for user login and logout we are using sessions controller and we are defining out custom routes for login and logout however we can use resources :sessions.Check below code for reference .
 #user login and logout routes
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
@@ -23,6 +24,19 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :users
+  # resources :sessions, only: [:new, :create, :destroy]
+  #here instead of custom routes we will use resources :sessions.Now this will create all 7 routes for sessions controller.And they are as follows but we have used only 3 routes so only 3 routes will be created.for new,create and destroy.
+#      sessions GET    /sessions(.:format)          sessions#index
+#               POST   /sessions(.:format)          sessions#create
+#   new_session GET    /sessions/new(.:format)      sessions#new
+#  edit_session GET    /sessions/:id/edit(.:format) sessions#edit
+#       session GET    /sessions/:id(.:format)      sessions#show
+#               PATCH  /sessions/:id(.:format)      sessions#update
+#               PUT    /sessions/:id(.:format)      sessions#update
+#               DELETE /sessions/:id(.:format)      sessions#destroy
+#now we also need to modify our form. For example in navbar.html.erb we have
+#  <%= link_to "Login", login_path, class: "nav-link" %> this will need to be changed to <%= link_to "new_session_path", class: "nav-link" %>
+
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only:[ :new, :create, :edit, :update]
