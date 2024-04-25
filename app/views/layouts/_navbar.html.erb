@@ -1,6 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container-fluid">
-        <%= link_to image_tag("ror.png", class: "navbar-brand", width: 200, height: 150), "#" %>
+        <% # <%= link_to image_tag("tweetme.png", class: "navbar-brand", width: 200, height: 150), "#" %>
+        <h1><%= fa_icon "twitter", class: "ms-md-5", style: "font-size:100px" %> </h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,7 +10,7 @@
                 <% if logged_in? %>
                     <%= form_with(url: users_path, method: "get", local: true, class: "d-flex", role: "search") do %>
                         <%= text_field_tag :search, params[:search], placeholder: "Find Friends", aria_label: "Search", class: "form-control me-2" %>
-                        <%= submit_tag "Search", name: nil, class: "btn btn-outline-success" %>
+                        <%= submit_tag "Search", name: nil, class: "btn btn-outline-primary" %>
                     <% end %>
                 <% end %>
                 <li class="nav-item">
