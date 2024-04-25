@@ -1,4 +1,22 @@
-<div class="text-center mt-5">
-  <%= gravatar_for @user, size: 150 %>
-  <h1 class="mt-3"><%= @user.name %></h1>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %> <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8 text-center text-md-start">
+    <% if @user.microposts.any? %>
+      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+     <%= will_paginate @microposts %>
+      <ol class="microposts">
+      <%# here @microposts is an instance variable that is passed to the partial and defined in users_controller.rb in method show %>
+        <%= render @microposts %>
+        <%# render @microposts renders _micropost.html.erb and creates local variable %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% end %>
+  </div>
 </div>

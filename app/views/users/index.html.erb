@@ -2,6 +2,7 @@
 
 <div class="all-users">
     <h2 class="text-center"><%= fa_icon "users" %> All Users</h2>
+    <% if @users.any? %>
     <table class="table">
         <tr>
             <th>Profile <%= fa_icon "arrow-down" %> </th>
@@ -34,4 +35,9 @@
                           previous_label: fa_icon("arrow-left"),
                           next_label: fa_icon("arrow-right") %>
     </div>
+    <% else %>
+    <div class="alert alert-info text-center" role="alert">
+        <h3>There are no users yet!</h3>
+        </div>
+        <% end %>
 </div>

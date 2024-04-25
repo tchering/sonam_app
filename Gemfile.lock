@@ -50,6 +50,11 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_storage_validations (1.1.4)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (7.1.3.2)
       activesupport (= 7.1.3.2)
       globalid (>= 0.3.6)
@@ -80,6 +85,22 @@ GEM
     ansi (1.5.0)
     autoprefixer-rails (10.4.16.0)
       execjs (~> 2)
+    aws-eventstream (1.3.0)
+    aws-partitions (1.919.0)
+    aws-sdk-core (3.192.1)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.8)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.79.0)
+      aws-sdk-core (~> 3, >= 3.191.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.147.0)
+      aws-sdk-core (~> 3, >= 3.192.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.8)
+    aws-sigv4 (1.8.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.7)
@@ -99,6 +120,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    choice (0.2.0)
     coderay (1.1.3)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
@@ -116,6 +138,8 @@ GEM
     drb (2.2.1)
     erubi (1.12.0)
     execjs (2.9.1)
+    faker (3.3.1)
+      i18n (>= 1.8.11, < 2)
     ffi (1.16.3)
     font-awesome-rails (4.7.0.8)
       railties (>= 3.2, < 8.0)
@@ -149,6 +173,9 @@ GEM
       minitest (>= 3.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.0.1)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
@@ -160,6 +187,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jmespath (1.6.2)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -174,7 +202,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    method_source (1.0.0)
+    method_source (1.1.0)
+    mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.22.3)
     minitest-reporters (1.6.1)
@@ -195,17 +224,17 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.1)
-    nokogiri (1.16.3-aarch64-linux)
+    nokogiri (1.16.4-aarch64-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm-linux)
+    nokogiri (1.16.4-arm-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-arm64-darwin)
+    nokogiri (1.16.4-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86-linux)
+    nokogiri (1.16.4-x86-linux)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-darwin)
+    nokogiri (1.16.4-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.16.3-x86_64-linux)
+    nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
     notiffany (0.1.3)
       nenv (~> 0.1)
@@ -251,6 +280,11 @@ GEM
       activesupport (>= 5.0.0)
       minitest
       nokogiri (>= 1.6)
+    rails-erd (1.7.2)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
@@ -269,34 +303,38 @@ GEM
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.0)
-    reline (0.5.0)
+    reline (0.5.3)
       io-console (~> 0.5)
     rexml (3.2.6)
+    ruby-graphviz (1.2.5)
+      rexml
     ruby-progressbar (1.13.0)
+    ruby-vips (2.2.1)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
-    sass-embedded (1.74.1-aarch64-linux-gnu)
+    sass-embedded (1.75.0-aarch64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-aarch64-linux-musl)
+    sass-embedded (1.75.0-aarch64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-arm-linux-gnueabihf)
+    sass-embedded (1.75.0-arm-linux-gnueabihf)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-arm-linux-musleabihf)
+    sass-embedded (1.75.0-arm-linux-musleabihf)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-arm64-darwin)
+    sass-embedded (1.75.0-arm64-darwin)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-x86-linux-gnu)
+    sass-embedded (1.75.0-x86-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-x86-linux-musl)
+    sass-embedded (1.75.0-x86-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-x86_64-darwin)
+    sass-embedded (1.75.0-x86_64-darwin)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-x86_64-linux-gnu)
+    sass-embedded (1.75.0-x86_64-linux-gnu)
       google-protobuf (>= 3.25, < 5.0)
-    sass-embedded (1.74.1-x86_64-linux-musl)
+    sass-embedded (1.75.0-x86_64-linux-musl)
       google-protobuf (>= 3.25, < 5.0)
-    sassc-embedded (1.74.1)
-      sass-embedded (~> 1.74)
-    selenium-webdriver (4.19.0)
+    sassc-embedded (1.75.2)
+      sass-embedded (~> 1.75)
+    selenium-webdriver (4.20.0)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -337,7 +375,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    will_paginate (3.1.8)
+    will_paginate (3.3.1)
     will_paginate-bootstrap4 (0.2.2)
       will_paginate (~> 3.0, >= 3.0.0)
     xpath (3.2.0)
@@ -361,22 +399,28 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  active_storage_validations
+  aws-sdk-s3
   bcrypt
   bootsnap
   bootstrap
   capybara
   dartsass-sprockets
   debug
+  faker
   font-awesome-rails
   guard
   guard-minitest
+  image_processing
   importmap-rails
   jbuilder
+  mini_magick
   minitest-reporters
   pg
   puma (>= 5.0)
   rails (~> 7.1.3, >= 7.1.3.2)
   rails-controller-testing
+  rails-erd
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
@@ -385,10 +429,10 @@ DEPENDENCIES
   tzinfo-data
   web-console
   will_paginate
-  will_paginate-bootstrap4
+  will_paginate-bootstrap4 (~> 0.2.2)
 
 RUBY VERSION
    ruby 3.3.0p0
 
 BUNDLED WITH
-   2.5.7
+   2.5.3

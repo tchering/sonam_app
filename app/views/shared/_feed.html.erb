@@ -1,0 +1,12 @@
+<% if @feed_items.any? %>
+    <ol class="microposts">
+        <%= render @feed_items %>
+    </ol>
+    <div class="pagination d-flex justify-content-center">
+    <%= will_paginate @feed_items,
+                      previous_label: fa_icon("arrow-left"),
+                      next_label: fa_icon("arrow-right") %>
+        
+    </div>
+<% end %>
+

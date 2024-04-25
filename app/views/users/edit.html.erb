@@ -2,34 +2,34 @@
 <h1 class="text-center mb-4">Update Your Profile</h1>
 <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
-        <%= form_with(model: @user, local: true ,data: { turbo: false }, html: { class: 'form-floating p-4 bg-white shadow-lg rounded-lg' }) do |f| %>
-            <%= render 'shared/error_messages' , object: @user %>
+        <%= form_with(model: @user, local: true, data: { turbo: false }, html: { class: "form-floating p-4 bg-white shadow-lg rounded-lg" }) do |f| %>
+            <%= render "shared/error_messages", object: f.object %>
 
             <div class="form-floating mb-3">
-                <%= f.text_field :name, class: 'form-control rounded-3', id: 'name', placeholder: 'Name' %>
-                <%= f.label :name, 'Name', class: 'px-4' %>
+                <%= f.text_field :name, class: "form-control rounded-3", id: "name", placeholder: "Name" %>
+                <%= f.label :name, "Name", class: "px-4" %>
             </div>
 
             <div class="form-floating mb-3">
-                <%= f.email_field :email, class: 'form-control rounded-3', id: 'email', placeholder: 'Email' %>
-                <%= f.label :email, 'Email', class: 'px-4' %>
+                <%= f.email_field :email, class: "form-control rounded-3", id: "email", placeholder: "Email" %>
+                <%= f.label :email, "Email", class: "px-4" %>
             </div>
 
             <div class="form-floating mb-3">
-                <%= f.password_field :password, class: 'form-control rounded-3', id: 'password', placeholder: 'Password' %>
-                <%= f.label :password, 'Password', class: 'px-4' %>
+                <%= f.password_field :password, class: "form-control rounded-3", id: "password", placeholder: "Password" %>
+                <%= f.label :password, "Password", class: "px-4" %>
             </div>
 
             <div class="form-floating mb-4">
-                <%= f.password_field :password_confirmation, class: 'form-control rounded-3', id: 'password_confirmation', placeholder: 'Password Confirmation' %>
-                <%= f.label :password_confirmation, 'Confirmation', class: 'px-4' %>
+                <%= f.password_field :password_confirmation, class: "form-control rounded-3", id: "password_confirmation", placeholder: "Password Confirmation" %>
+                <%= f.label :password_confirmation, "Confirmation", class: "px-4" %>
             </div>
 
             <%= f.submit "Save Changes", class: "btn btn-primary btn-lg btn-block rounded-pill w-100" %>
         <% end %>
 
         <div class="text-center m-3">
-            <%= gravatar_for @user%>
+            <%= gravatar_for @user %>
             <br>
             <a href="https://gravatar.com/emails" target="_blank" rel="noopener" class="btn btn-outline-secondary btn-sm mt-2">Change Profile Picture</a>
         </div>

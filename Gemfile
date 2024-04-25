@@ -7,10 +7,23 @@ gem "rails-controller-testing"
 #add font-awesome
 gem "font-awesome-rails"
 # will_paginate
-gem 'will_paginate-bootstrap4'
-gem 'will_paginate'
+gem 'will_paginate-bootstrap4', '~> 0.2.2'
+gem "will_paginate"
 
 gem "bcrypt"
+
+gem "faker"
+
+#The image_processing and mini_magick gems are both used for handling image files in Ruby.
+
+# image_processing: This gem provides higher-level image processing helpers that are commonly needed when handling image uploads. It's built on top of mini_magick (or ruby-vips, another image processing library). The image_processing gem provides convenient methods to resize or crop images, convert image formats, and more. It's often used in combination with Active Storage, the file upload solution included with Rails.
+gem "image_processing"
+
+# mini_magick: This gem is a Ruby wrapper for ImageMagick or GraphicsMagick command line. It allows you to manipulate images (resize, crop, draw text, etc.) using a simple and convenient Ruby interface. However, it doesn't actually include ImageMagick or GraphicsMagick, so you need to install one of those tools separately on your system.
+gem "mini_magick"
+
+#The active_storage_validations gem is a library for adding validations to Active Storage attachments in Rails applications.
+gem "active_storage_validations"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -71,9 +84,11 @@ group :development do
   gem "guard"
   gem "guard-minitest"
   gem "minitest-reporters"
+  gem "rails-erd"
 end
 group :production do
   gem "pg"
+  gem 'aws-sdk-s3', require: false
 end
 
 group :test do

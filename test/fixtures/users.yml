@@ -8,12 +8,15 @@ one:
   activated: true
   activated_at: <%= Time.zone.now %>
   admin: true
-  
 
 two:
   name: test User 2
   email: test2@gmail.com
   password_digest: <%= User.digest('password') %>
+  activation_digest: <%= User.digest('activation_token') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  admin: false
 
 admin:
   name: admin

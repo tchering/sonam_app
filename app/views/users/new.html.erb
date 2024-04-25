@@ -9,26 +9,26 @@
             <h3 class="mb-5">Signup</h3>
 
             <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
-              <%= render "shared/error_messages" %>
+              <%= render "shared/error_messages", object: f.object %>
 
               <div class="form-floating mb-4">
                 <%= f.text_field :name, class: "form-control ", placeholder: "Name" %>
-                <%= f.label :name, 'Name', class: "form-label" %>
+                <%= f.label :name, "Name", class: "form-label" %>
               </div>
 
               <div class="form-floating mb-4">
-                <%= f.email_field :email, class: "form-control ", required: true,placeholder: "Email" %>
-                <%= f.label :email, 'Email', class: "form-label" %>
+                <%= f.email_field :email, class: "form-control ", required: true, placeholder: "Email" %>
+                <%= f.label :email, "Email", class: "form-label" %>
               </div>
 
               <div class="form-floating mb-4">
                 <%= f.password_field :password, class: "form-control ", placeholder: "Password" %>
-                <%= f.label :password, 'Password', class: "form-label" %>
+                <%= f.label :password, "Password", class: "form-label" %>
               </div>
 
               <div class="form-floating mb-4">
                 <%= f.password_field :password_confirmation, class: "form-control ", placeholder: "Confirm Password" %>
-                <%= f.label :password_confirmation, 'Confirm Password', class: "form-label"%>
+                <%= f.label :password_confirmation, "Confirm Password", class: "form-label" %>
               </div>
 
               <%= f.submit "Create my account", class: "btn btn-primary btn-lg btn-block" %>
