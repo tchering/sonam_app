@@ -1,6 +1,6 @@
 <h1>Account Activation</h1>
 
- <h1><%= fa_icon "twitter", class: "ms-md-5", style: "font-size:100px" %> </h1>
+<%= link_to image_tag("ror.png", class: "navbar-brand", width: 200, height: 150), "#" %>
 <p>
    Hi <%= @user.name %>
 </p>
@@ -9,4 +9,4 @@
 </p>
 
 
-<%= link_to "Activate account", edit_account_activation_url(@user.activation_token, email: @user.email, host: "tweetme.online") %>
+<%= link_to "Activate account", edit_account_activation_url(@user.activation_token, email: @user.email, host: "www.tweetme.online") %>
