@@ -73,6 +73,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "sonam_app_production"
 
+  config.action_mailer.asset_host = "https://www.tweetme.online"
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.

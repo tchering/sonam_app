@@ -39,4 +39,25 @@
   border-color: #dee2e6; /* Border color for disabled link */
 }
 
-// css for micropost form field
+//css for image in mobile version
+.image {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 576px) {
+  .image {
+    width: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .image {
+    width: 400px;
+  }
+}
+@media (min-width: 992px) {
+  .image {
+    width: 600px;
+  }
+}
