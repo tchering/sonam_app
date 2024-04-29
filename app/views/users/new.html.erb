@@ -7,7 +7,10 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5">Signup</h3>
-
+    <% # Here @user in model: @user is an instance of User modal in method
+       # def new
+       #  @user = User.new
+       #  end %>
             <%= form_with(model: @user, local: true, data: { turbo: false }) do |f| %>
               <%= render "shared/error_messages", object: f.object %>
 

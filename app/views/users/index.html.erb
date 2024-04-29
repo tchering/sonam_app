@@ -12,13 +12,14 @@
         <tr>
             <td>
                 <%= link_to user do %>
-                <%= gravatar_for user, size: 50 %>
-                <%= user.name %>
+                    <%= gravatar_for user, size: 50 %>
+                    <%= user.name %>
                 <% end %>
             </td>
             <td><%= user.email %></td>
             <td>
                 <% if current_user.admin? && !current_user?(user) %>
+                <%# user in user_path(user) is from loop above @users.each do |user| %>
                     <%= link_to user_path(user), method: :delete, data: { turbo_action: "replace", turbo_method: "delete", turbo_confirm: "Are you sure?" } do %>
                         <%= fa_icon "trash", style: "color:red;" %> 
                     <% end %>

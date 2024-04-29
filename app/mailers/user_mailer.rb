@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.account_activation.subject
   #
-  def account_activation(user)
+  def account_activation(user) # the value in this user will be passed or is passed from user.rb when calling account_activation(self). Self is the user object
     # @greeting = "Hi"
     @user = user
 

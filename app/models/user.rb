@@ -33,6 +33,12 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(@remember_token))
   end
 
+  # This method is called in sessions_helper.rb
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+
+
   #this method is modified to use send method to call a method dynamically below
   # def authenticated?(remember_token)
   #   return false if remember_digest.nil?
@@ -48,10 +54,6 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password?(token)
   end
 
-  # Forgets a user.
-  def forget
-    update_attribute(:remember_digest, nil)
-  end
 
   #this method is called in account_activations_controller.rb
   def activate

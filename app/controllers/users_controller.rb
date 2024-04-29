@@ -23,9 +23,6 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.paginate(page: params[:page], per_page: 8)
   end
 
-  def edit
-    # @user = User.find(params[:id])
-  end
 
   def destroy
     # User.find(params[:id]).destroy
@@ -34,6 +31,13 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+    #this will show the form to update user
+    def edit
+      # @user = User.find(params[:id])
+    end
+
+
+  #this will actually update the user
   def update
     # @user = User.find(params[:id])
     if @user.update(user_params)
