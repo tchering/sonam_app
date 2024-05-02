@@ -61,3 +61,17 @@
     width: 600px;
   }
 }
+.logo-text {
+  font-family: "Pacifico", cursive; /* This is just an example, replace with your desired font */
+  font-size: 1.5em;
+  color: rgb(75, 73, 73); /* Twitter's brand color */
+}
+
+.list_shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: 0.3s;
+}
+
+.list_shadow:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}

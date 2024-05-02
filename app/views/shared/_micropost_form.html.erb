@@ -1,22 +1,25 @@
-<h1>whats up? </h1>
-<%= form_with(model: @micropost, local: true, data: { turbo: false }) do |f| %>
-  <% # <%= render "shared/error_messages", object: f.object %> 
-  <div class="field shadow-lg">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
-    <% if @micropost.errors.any? %>
-      <% @micropost.errors.full_messages_for(:image).each do |message| %>
-        <div class="alert alert-danger">
-          <%= message %>
+<div class="post-form bg-light p-3 rounded">
+    <h1 class="h4 mb-3">What's up?</h1>
+    <%= form_with(model: @micropost, local: true, data: { turbo: false }) do |f| %>
+        <% # <%= render "shared/error_messages", object: f.object %> 
+        <div class="field shadow-lg p-2 rounded">
+            <%= f.text_area :content, placeholder: "Compose new micropost...", class: "form-control" %>
+            <% if @micropost.errors.any? %>
+                <% @micropost.errors.full_messages_for(:image).each do |message| %>
+                    <div class="alert alert-danger mt-2">
+                        <%= message %>
+                    </div>
+                <% end %>
+                <% @micropost.errors.full_messages_for(:content).each do |message| %>
+                    <div class="alert alert-danger mt-2">
+                        <%= message %>
+                    </div>
+                <% end %>
+            <% end %>
         </div>
-      <% end %>
-      <% @micropost.errors.full_messages_for(:content).each do |message| %>
-        <div class="alert alert-danger">
-          <%= message %>
-        </div>
-      <% end %>
+        <%= f.submit "Post", class: "btn btn-primary w-100 mt-3" %>
+        <%= f.file_field :image, class: "d-none", id: "image_file" %>
+        <%= f.label :image, "Upload Image", class: "btn btn-primary mt-2", for: "image_file" %>
     <% end %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-primary w-100 mb-4" %>
-  <%= f.file_field :image, class: "d-none", id: "image_file" %>
-  <%= f.label :image, "Upload Image", class: "btn btn-primary", for: "image_file" %>
-<% end %>
+</div>
+  <% # <%= render "shared/error_messages", object: f.object %> 

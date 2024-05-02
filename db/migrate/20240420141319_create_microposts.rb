@@ -10,3 +10,5 @@ class CreateMicroposts < ActiveRecord::Migration[7.1]
     add_index:microposts, [:user_id, :created_at]
   end
 end
+
+Here we have manually gave foreign_key 

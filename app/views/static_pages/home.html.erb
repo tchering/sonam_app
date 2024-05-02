@@ -2,10 +2,14 @@
     <% if logged_in? %>
         <div class = "row">
             <aside class= "col-md-4">
-                <section class= "user_info">
+                <section class= "user_info list_shadow rounded-3">
                     <%= render "shared/user_info" %>
+                         <section class="stats p-2">
+                    <%= render "shared/stats" %>
                 </section>
-                <section class = "micropost_form">
+                </section>
+           
+                <section class = "micropost_form list_shadow rounded-3">
                     <%= render "shared/micropost_form" %>
                 </section>
             </aside>
@@ -23,8 +27,8 @@
                 sample application
             </p>
            <%= link_to "Signup", signup_path, class: "btn btn-primary" %>
+             <% # <%= link_to "Signup", new_user_path, class: "btn btn-primary" %>
         </div>
     </div>
     <% end %>
 
- 

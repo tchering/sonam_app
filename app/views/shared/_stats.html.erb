@@ -1,0 +1,24 @@
+<% # assigns the value of the `current_user` method to the `@user` instance variable if `@user` is currently `nil` or `false`. %>
+    <% # This ensures that `@user` has a valid value before further processing in the template. %>
+<% @user ||= current_user %>
+<div class="stats d-flex justify-content-around bg-light py-2 px-3 rounded shadow-lg">
+    <div class="d-flex flex-column align-items-center">
+        <a href="<%= following_user_path(@user) %>" class="text-decoration-none text-dark">
+            <strong id="following" class="stat h5">
+                <%= @user.following.count %>
+            </strong>
+            <span class="text-muted small">Following</span>
+        </a>
+    </div>
+    
+    <div class="d-flex flex-column align-items-center">
+        <a href="<%= followers_user_path(@user) %>" class="text-decoration-none text-dark">
+            <strong id="followers" class="stat h5">
+                <%= @user.followers.count %>
+            </strong>
+            <span class="text-muted small">Followers</span>
+        </a>
+    </div>
+</div>
+<% # we have user following_user_path and followers_user_path routes becuase this routes are defined in routes.rb get:following,:followers %>
+<% # so when user clicks these links then the following or follower method in user controller gets triggered %>

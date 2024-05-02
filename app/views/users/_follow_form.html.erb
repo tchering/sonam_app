@@ -1,0 +1,12 @@
+<%# if current user is not same as other user  %>
+<%# @user will gets it value from show.html.erb becuase this partial is rendered there and @user value will also be passed in partial 'unfollow' and 'follow' %>
+<% if !current_user?(@user) %> 
+<div id = "follow_form">
+    <%# In this partial we have rendered another partial follow and unfollow which we will need to create %>
+    <% if current_user.following?(@user) %>
+        <%= render "unfollow" %>
+    <% else %>
+        <%= render "follow" %>
+    <% end %>
+</div>
+<% end %>
