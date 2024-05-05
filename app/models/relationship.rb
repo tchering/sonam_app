@@ -1,6 +1,6 @@
 class Relationship < ApplicationRecord
-  belongs_to :follower, class_name: 'User'
-  belongs_to :followed, class_name: 'User'
+  belongs_to :follower, class_name: "User"
+  belongs_to :followed, class_name: "User"
 
   #   Relationship record must have a follower_id and a followed_id. If you try to save a Relationship record without one or both of these fields, Rails will prevent it and add an error message to the Relationship object.
 

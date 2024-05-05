@@ -4,3 +4,7 @@
     <div> <%= hidden_field_tag :followed_id, @user.id %> </div>
     <%= f.submit "Follow", class: "btn btn-primary" %>
 <% end %>
+
+<%# current_user.active_relationships.build(followed_id: other_user.id) creates a new active_relationship in memory where the current_user is the follower and other_user is the followed user, but it does not save this relationship to the database.
+
+current_user.active_relationships.create(followed_id: other_user.id) creates a new active_relationship and saves it to the database. The current_user is the follower and other_user is the followed user. %>
