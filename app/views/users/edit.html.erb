@@ -26,12 +26,21 @@
             </div>
 
             <%= f.submit "Save Changes", class: "btn btn-primary btn-lg btn-block rounded-pill w-100" %>
-        <% end %>
 
-        <div class="text-center m-3">
-            <%= gravatar_for @user %>
-            <br>
-            <a href="https://gravatar.com/emails" target="_blank" rel="noopener" class="btn btn-outline-secondary btn-sm mt-2">Change Profile Picture</a>
-        </div>
+            <div class="text-center m-3">
+                <% if @user.errors.any? %>
+                    <% @user.errors.full_messages_for(:profile_picture).each do |message| %>
+                        <div class="alert alert-danger mt-2">
+                            <%= message %>
+                        </div>
+                    <% end %>
+                <% end %>
+                <div id="preview" class="mt-2">
+                    <%= image_tag (@user.profile_picture.attached? ? @user.profile_picture : "tweetme.png"), class: "rounded-circle", id: "image_preview", size: "100x100" %>
+                </div>
+                <%= f.file_field :profile_picture, class: "d-none", id: "image_file" %>
+                <%= f.label :profile_picture, "Upload Profile", class: "btn btn-primary mt-2", for: "image_file" %>
+            </div>
+        <% end %>
     </div>
 </div>

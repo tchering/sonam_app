@@ -3,6 +3,10 @@ class User < ApplicationRecord
 
   before_create :create_activation_digest
 
+  has_one_attached :profile_picture
+
+  validates :profile_picture, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], message: 'Only PNG, JPG, JPEG, and GIF files are allowed.' },
+                              size: { less_than: 5.megabytes, message: 'File size should be less than 5MB.' }
   has_many :microposts, dependent: :destroy
   # with this we can call user.microposts. user.microposts.build, user.microposts.create, user.microposts.find_by, user.microposts.destroy etc.
 
@@ -32,6 +36,14 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, length: { minimum: 5, maximum: 50 }, allow_nil: true,
                        format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+\z/, message: 'must include at least one uppercase letter, one lowercase letter, and one number' }
+
+  def profile_picture_attached?
+    profile_picture.attached? ? profile_picture : 'tweetme.png'
+  end
+
+  def display_image
+    profile_picture.variant(resize_to_limit: [100, 100])
+  end
 
   # Returns the hash digest of the given string.
   def self.digest(string)

@@ -1,7 +1,8 @@
 <li id="micropost-<%= micropost.id %>" class="microposts">
     <div class="d-flex justify-content-between">
         <div class="list_shadow w-100 rounded-3">
-            <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+            <% # <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
+    <%= link_to (micropost.user.profile_picture.attached? ? image_tag(micropost.user.profile_picture, size: "50x50", class: "rounded-circle") : gravatar_for(micropost.user, size: 50)), micropost.user %>
            
             <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
             <span class="content"><%= micropost.content + "." %></span>

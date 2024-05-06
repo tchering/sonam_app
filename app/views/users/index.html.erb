@@ -16,7 +16,8 @@
             <tr>
                 <td>
                     <%= link_to user do %>
-                        <%= gravatar_for user, size: 50 %>
+                        <%# <%= gravatar_for user, size: 50 %> 
+                        <%= user.profile_picture.attached? ? image_tag(user.profile_picture, size: "50x50", class: "rounded-circle") : gravatar_for(user, size: 50) %>
                         <%= user.name %>
                     <% end %>
                 </td>

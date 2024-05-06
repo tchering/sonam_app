@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_picture)
   end
 
   # becuase now microposts_controller and users_controller both are using this method so its better to keep code dry.
