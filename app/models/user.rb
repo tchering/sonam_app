@@ -4,6 +4,8 @@ class User < ApplicationRecord
   before_create :create_activation_digest
 
   has_many :microposts, dependent: :destroy
+  # with this we can call user.microposts. user.microposts.build, user.microposts.create, user.microposts.find_by, user.microposts.destroy etc.
+
   # active_relationships meaning all the users that the current user is following.
   has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   # this will give us methods like
@@ -16,7 +18,7 @@ class User < ApplicationRecord
   # This code below is saying that the current user has many following through active_relationships and the source of the following is the followed users. So rails knows that the source is the followed_id in the relationships table.
   # in other words these line has_many:following and followers are defining association between users and relationships table not routes
   has_many :following, through: :active_relationships, source: :followed
-
+  # this will give us methods like user.following and user.followers and another useful method user.following_ids which will return an array of ids of the users that the current user is following.
   has_many :followers, through: :passive_relationships, source: :follower
 
   # before_save { self.email = email.downcase }
@@ -104,12 +106,18 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  # define a proto-feed
-  # See "Following users" for the full implementation.
-  def feed
-    Micropost.where('user_id = ?', id)
-  end
+  # This method is called in microposts_controller.rb(create method) and static_pages_controller.rb(home method) . This method is used to get the feed of the current user.
+  # def feed
+  #   Micropost.where('user_id = ?', id)
+  # end
+  # here id is not column name but it is  method of ActiveRecord::Base and it returns the id of the current user.
 
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
   # methods for following? follow and unfollow are defined here. These methods are available becuase of this line has_many :following, through: :active_relationships, source: :followed
 
   # Currently these methods are called in test .
@@ -117,7 +125,7 @@ class User < ApplicationRecord
   def follow(other_user)
     following << other_user
 
-    #this above code is equivalent to this code below
+    # this above code is equivalent to this code below
 
     # active_relationships.create(followed_id: other_user.id)
   end
@@ -130,7 +138,6 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
-
 
   private
 
