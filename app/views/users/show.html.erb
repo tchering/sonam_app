@@ -1,19 +1,18 @@
 <% provide(:title, @user.name) %>
 <div class="row bg-light p-3 rounded">
   <aside class="col-md-4">
-    <section class="user_info text-center text-md-start">
+    <section class="user_info text-center text-md-start d-flex justify-content-between align-items-center">
       <h1>
           <%= @user.profile_picture.attached? ? image_tag(@user.profile_picture, size: "100x100", class: "rounded-circle") : gravatar_for(@user, size: 50) %>
         <%= @user.name %>
       </h1>
+        <%= render "follow_form" if logged_in? %>
     </section>
     <section  class="stats list_shadow">
       <%= render "shared/stats" %>
     </section>
   </aside>
   <div class="col-md-8 text-center text-md-start">
-    <% # follow_form is rendered here %>
-    <%= render "follow_form" if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
      <%= will_paginate @microposts %>
