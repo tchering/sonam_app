@@ -27,4 +27,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @other_user.reload.admin?
   end
 
+  test "should be able to upload profile picture" do
+    log_in_as(@user)
+    picture = fixture_file_upload('test_image.png', 'image/png')
+    patch user_path(@user), params: {
+      user: { profile_picture: picture,
+              password: "Password1",
+              password_confirmation: "Password1" }
+    }
+    assert_redirected_to @user
+    @user.reload
+    assert @user.profile_picture.attached?
+  end
+
 end
