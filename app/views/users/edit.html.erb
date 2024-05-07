@@ -36,20 +36,20 @@
                     <% end %>
                 <% end %>
                 <div id="preview" class="mt-2">
-                    <%= image_tag (@user.profile_picture.attached? ? @user.profile_picture : "tweetme.png"), class: "rounded-circle", id: "image_preview", size: "100x100" %>
+                    <%= image_tag (@user.profile_picture.attached? ? @user.profile_picture : "tweetme.png"), class: "rounded-circle", id: "profile_image_preview", size: "100x100" %>
                 </div>
-                <%= f.file_field :profile_picture, class: "d-none", id: "image_file" %>
-                <%= f.label :profile_picture, "Upload Profile", class: "btn btn-primary mt-2", for: "image_file" %>
+                <%= f.file_field :profile_picture, class: "d-none", id: "profile_image_file" %>
+                <%= f.label :profile_picture, "Upload Profile", class: "btn btn-primary mt-2", for: "profile_image_file" %>
             </div>
         <% end %>
     </div>
 </div>
-<%# <script>
-    document.getElementById("image_file").onchange = function () {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById("image_preview").src = e.target.result;
-        };
-        reader.readAsDataURL(this.files[0]);
+<script>
+document.getElementById("profile_image_file").onchange = function () {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById("profile_image_preview").src = e.target.result;
     };
-</script> %>
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
