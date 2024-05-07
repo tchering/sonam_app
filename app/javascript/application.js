@@ -4,7 +4,7 @@ import "@hotwired/turbo-rails";
 import "controllers";
 import "popper";
 import "bootstrap";
-import "./profile_picture_preview";
+// import "./profile_picture_preview";
 // Rails.start();
 // test if javascript is working
 // document.addEventListener("DOMContentLoaded", () => {
