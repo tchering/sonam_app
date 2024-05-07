@@ -11,6 +11,6 @@ class Micropost < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   # Returns a resized image for display.
   def display_image
-    image.variant(resize_to_limit: [500, 500])
+    image.variant(resize_to_limit: [600, 600])
   end
 end

@@ -17,9 +17,14 @@
                 <% end %>
             <% end %>
         </div>
+        <div>
+            <div id="preview" class="mt-2 text-center">
+                   <%= image_tag (@micropost.image.attached? ? @micropost.image : "tweetme.png"), class: "rounded", id: "image_preview", style: "width: 200px;" %>
+                </div>
         <%= f.submit "Post", class: "btn btn-primary w-100 mt-3" %>
         <%= f.file_field :image, class: "d-none", id: "image_file" %>
         <%= f.label :image, "Upload Image", class: "btn btn-primary mt-2", for: "image_file" %>
+        </div>
     <% end %>
 </div>
   <% # <%= render "shared/error_messages", object: f.object %> 
