@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
+  get '/blog', to: 'static_pages#blog'
 
   # get "/show/:id", to: "users#show"
   # get "/edit/:id", to: "users#edit"
