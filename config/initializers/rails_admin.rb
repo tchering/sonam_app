@@ -14,10 +14,10 @@ RailsAdmin.config do |config|
 
   config.authenticate_with do
     if _current_user.nil?
-      flash[:error] = 'You need to sign in for access to this page.'
-      redirect_to main_app.new_user_session_path
+      flash[:danger] = 'You need to sign in for access to this page.'
+      redirect_to main_app.login_path
     elsif !_current_user.admin?
-      flash[:error] = 'You are not an admin'
+      flash[:danger] = 'You are not authorized to access this page.'
       redirect_to main_app.root_path
     end
   end
@@ -52,4 +52,28 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  ## == User model == this is to show which columns to be visible in the admin panel
+  # config.model 'User' do
+  #   list do
+  #     field :id
+  #     field :name
+  #     field :email
+  #     field :admin
+  #     field :created_at
+  #     field :updated_at
+  #     field :activated
+  #     field :activated_at
+  #     field :profile_picture
+  #   end
+
+  # edit do
+  #   field :name
+  #   field :email
+  #   field :password
+  #   field :password_confirmation
+  #   field :admin
+  #   field :activated
+  # end
+  # end
 end
