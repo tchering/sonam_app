@@ -15,6 +15,9 @@ gem 'bcrypt'
 
 gem 'faker'
 
+gem 'rails_admin'
+gem 'kaminari'
+
 # The image_processing and mini_magick gems are both used for handling image files in Ruby.
 
 # image_processing: This gem provides higher-level image processing helpers that are commonly needed when handling image uploads. It's built on top of mini_magick (or ruby-vips, another image processing library). The image_processing gem provides convenient methods to resize or crop images, convert image formats, and more. It's often used in combination with Active Storage, the file upload solution included with Rails.

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # here for user login and logout we are using sessions controller and we are defining out custom routes for login and logout however we can use resources :sessions.Check below code for reference .
   # user login and logout routes
   get '/login', to: 'sessions#new'
