@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
     if logged_in?
       @micropost = current_user.microposts.build
       @feed_items = current_user.feed.paginate(page: params[:page], per_page: 8)
+      #here we called feed method in current_user which is instance of User model therefore the feed method should be defined in User model(user.rb)
     end
   end
 

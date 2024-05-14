@@ -34,6 +34,7 @@ class UsersController < ApplicationController
   # this will show the form to update user
   def edit
     # @user = User.find(params[:id])
+    @user = current_user
   end
 
   # this will actually update the user
@@ -91,6 +92,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :profile_picture)
   end
+  #in method user_params require(:user) here user is referencing to @user that we have used in form that create method handles.:user is referencing the user key in the parameters hash that your application receives when a form is submitted.
 
   # becuase now microposts_controller and users_controller both are using this method so its better to keep code dry.
 

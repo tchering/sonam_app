@@ -124,6 +124,10 @@ class User < ApplicationRecord
   # end
   # here id is not column name but it is  method of ActiveRecord::Base and it returns the id of the current user.
 
+#   When you call current_user.feed in your controller, current_user is an instance of the User class, and id is a method that returns the id of this user instance.
+
+# So, Micropost.where('user_id = ?', id) is essentially saying "get all microposts where the user_id is equal to the id of the current user".
+
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
