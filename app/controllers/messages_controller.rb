@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :logged_in_user, only: %i[index create destroy]
   before_action do
    @conversation = Conversation.find(params[:conversation_id])
   end

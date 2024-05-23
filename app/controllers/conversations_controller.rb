@@ -1,5 +1,7 @@
 class ConversationsController < ApplicationController
 
+  before_action :logged_in_user,only: %i[index create]
+
   def index
     @user = current_user
     @users = messageable_users
