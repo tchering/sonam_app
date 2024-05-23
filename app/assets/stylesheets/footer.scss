@@ -4,10 +4,22 @@ $black: rgb(0, 0, 0);
 $white: rgb(255, 255, 255);
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: $font-primary;
   font-size: 15px;
   line-height: 1.8;
   font-weight: normal;
+}
+
+.container.main-body {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  padding: 3em 0;
 }
 a {
   transition: 0.3s all ease;

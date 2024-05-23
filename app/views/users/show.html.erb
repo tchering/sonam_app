@@ -11,6 +11,19 @@
     <section  class="stats list_shadow">
       <%= render "shared/stats" %>
     </section>
+    <div>
+      <% if current_user && current_user != @user %>
+  <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipent_id: @user.id), method: :post, data: { turbo_method: :post, turbo_action: "replace" }, class: "btn btn-outline-success mt-3" %>
+<% elsif current_user %>
+  <div class="d-flex align-items-center">
+  <%= link_to conversations_path, class: " mt-2" do %>
+  <%= fa_icon "envelope", class: "fa-3x text-success" %>
+  <% end %>
+  </div>
+<% end %>
+</div>
+
+              
   </aside>
   <div class="col-md-8 text-center text-md-start">
     <% if @user.microposts.any? %>

@@ -43,6 +43,10 @@ Rails.application.routes.draw do
       #note that this method should be created in users_controller.rb. This method is not reference to has_many :followers or following in user.rb so can be named anything.
     end
   end
+
+  resources :conversations do
+    resources :messages
+   end
   # ! This is the same as the above code but we are using resources instead of custom routes.
   # get 'users/:id/following', to: 'users#following', as: 'following_user'
   # get 'users/:id/followers', to: 'users#followers', as: 'followers_user'
