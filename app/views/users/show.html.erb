@@ -3,34 +3,38 @@
   <aside class="col-md-4">
     <section class="user_info text-center text-md-start d-flex justify-content-between align-items-center">
       <h1>
-          <%= @user.profile_picture.attached? ? image_tag(@user.profile_picture, size: "100x100", class: "rounded-circle") : gravatar_for(@user, size: 50) %>
+        <%= @user.profile_picture.attached? ? image_tag(@user.profile_picture, size: "100x100", class: "rounded-circle") : gravatar_for(@user, size: 50) %>
         <%= @user.name %>
       </h1>
-        <%= render "follow_form" if logged_in? %>
+      <%= render "follow_form" if logged_in? %>
     </section>
-    <section  class="stats list_shadow">
+    <section class="stats list_shadow">
       <%= render "shared/stats" %>
     </section>
     <div>
       <% if current_user && current_user != @user %>
-  <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipent_id: @user.id), method: :post, data: { turbo_method: :post, turbo_action: "replace" }, class: "btn btn-outline-success mt-3" %>
-<% elsif current_user %>
-  <div class="d-flex align-items-center">
-  <%= link_to conversations_path, class: " mt-2" do %>
-  <%= fa_icon "envelope", class: "fa-3x text-success btn btn-outline-light shadow-lg" %>
+        <%= link_to "Message me!", conversations_path(sender_id: current_user.id, recipent_id: @user.id), method: :post, data: { turbo_method: :post, turbo_action: "replace" }, class: "btn btn-outline-success mt-3" %>
+      <% elsif current_user %>
+       <div class="d-flex align-items-center">
+  <%= link_to conversations_path, class: "mt-2 position-relative" do %>
+    <%= fa_icon "envelope", class: "fa-3x text-success btn btn-outline-light shadow-lg" %>
+    <% if current_user.unread_messages_count > 0 %>
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        <%= current_user.unread_messages_count %>
+        <span class="visually-hidden">unread messages</span>
+      </span>
+    <% end %>
   <% end %>
-  </div>
-<% end %>
 </div>
-
-              
+      <% end %>
+    </div>
   </aside>
   <div class="col-md-8 text-center text-md-start">
     <% if @user.microposts.any? %>
       <h3>Microposts (<%= @user.microposts.count %>)</h3>
-     <%= will_paginate @microposts %>
+      <%= will_paginate @microposts %>
       <ol class="microposts list-unstyled">
-      <% # here @microposts is an instance variable that is passed to the partial and defined in users_controller.rb in method show %>
+        <% # here @microposts is an instance variable that is passed to the partial and defined in users_controller.rb in method show %>
         <%= render @microposts %>
         <% # render @microposts renders _micropost.html.erb and creates local variable %>
       </ol>

@@ -1,48 +1,62 @@
 <style>
-    .message-container {
-        max-height: 400px;
-        overflow-y: auto;
-    }
+  .message-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 10px;
+  }
+
+  .message-bubble {
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 5px 0;
+    word-wrap: break-word;
+  }
+
+  .message-bubble p {
+    margin: 0;
+  }
+
+  .message-sent {
+    background-color: lightgrey;
+    align-self: flex-end;
+  }
+
+  .message-received {
+    background-color: #ffffff;
+    align-self: flex-start;
+  }
+
+  .message-row {
+    display: flex;
+    margin-bottom: 10px;
+  }
 </style>
 
 <% if @over_ten %>
-   <%= link_to "Show Previous", "?m=all", class: "btn btn-primary mb-3" %>
+  <%= link_to "Show Previous", "?m=all", class: "btn btn-primary mb-3" %>
 <% end %>
 
 <div class="card message-container">
   <% @messages.each do |message| %>
     <% if message.body %>
       <% user = User.find(message.user_id) %>
-      <div class="card-body">
-        <% if user == current_user %>
-          <div class="d-flex justify-content-end text-dark">
-            <div>
-                <h6 class="card-subtitle mb-2"><strong><%= user.name %></strong>  <small class="text-muted"><%= message.message_time %></small></h6>
-              <p class="card-text text-primary">
-                <%= fa_icon "caret-right" %>
-                <%= message.body %>
-                <%= link_to conversation_message_path(@conversation, message), method: :delete, data: { confirm: "Are you sure?", turbo_method: :delete, turbo_action: "replace" } do %>
-   <%= fa_icon "trash" %>
-<% end %>
-              </p>
-              <% if message.user == current_user %>
-
-<% end %>
-              
-            </div>
-          </div>
-        <% else %>
-          <div class="d-flex justify-content-start text-dark">
-            <div>
-                 <h6 class="card-subtitle mb-2"><strong><%= user.name %></strong> <small class="text-muted"><%= message.message_time %></small></h6>
-              <p class="card-text text-primary">
-                <%= fa_icon "caret-right" %>
-                <%= message.body %>
-              </p>
-             
-            </div>
-          </div>
-        <% end %>
+      <div class="message-row <%= user == current_user ? "justify-content-end" : "justify-content-start" %>">
+        <div class="message-bubble <%= user == current_user ? "message-sent" : "message-received" %>">
+          <h6 class="card-subtitle mb-2">
+            <strong><%= user.name %></strong>
+            <small class="text-muted"><%= message.message_time %></small>
+          </h6>
+          <p class="card-text text-primary">
+            <%= fa_icon "caret-right" %>
+            <%= message.body %>
+            <% if user == current_user %>
+              <%= link_to conversation_message_path(@conversation, message), method: :delete, data: { confirm: "Are you sure?", turbo_method: :delete, turbo_action: "replace" } do %>
+                <%= fa_icon "trash" %>
+              <% end %>
+            <% end %>
+          </p>
+        </div>
       </div>
       <hr class="m-0">
     <% end %>
@@ -61,8 +75,8 @@
 <% end %>
 
 <script>
-window.onload = function() {
-  var messageContainer = document.querySelector('.message-container');
-  messageContainer.scrollTop = messageContainer.scrollHeight;
-}
+  window.onload = function() {
+    var messageContainer = document.querySelector('.message-container');
+    messageContainer.scrollTop = messageContainer.scrollHeight;
+  }
 </script>

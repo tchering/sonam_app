@@ -1,43 +1,71 @@
 <style>
-    .custom-bg {
-  background-color: rgb(12,156,193);
-}
+  .custom-bg {
+    background-color: rgb(12,156,193);
+  }
 
-.mail-head {
-  font-family: 'Helvetica', sans-serif;
-  font-weight: 300;
-  color: #2c3e50;
-  letter-spacing: 2px;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
-}
+  .mail-head {
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 300;
+    color: #2c3e50;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+  }
+
+  .position-relative {
+    position: relative;
+  }
+
+  .position-absolute {
+    position: absolute;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.25em 0.4em;
+  }
+
+  .top-0 {
+    top: 0;
+  }
+
+  .start-100 {
+    left: 100%;
+  }
+
+  .translate-middle {
+    transform: translate(-50%, -50%);
+  }
 </style>
 
-<div class="container-lg my-5 ">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-8">
-            <h3 class="text-center text-primary mail-head">Mailbox</h3>
-            <div class="row shadow-lg p-3 rounded-4">
-                <% @conversations.each do |conversation| %>
-                    <% if conversation.sender_id == current_user.id || conversation.recipent_id == current_user.id %>
-                        <% if conversation.sender_id == current_user.id %>
-                            <% recipent = User.find(conversation.recipent_id) %>
-                        <% else %>
-                            <% recipent = User.find(conversation.sender_id) %>
-                        <% end %>
-                        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
-                            <div class="card border-primary h-10  ">
-                                <div class="card-header custom-bg text-white">
-                                    <h5 class="card-title"><%= recipent.name %></h5>
-                                </div>
-                                <div class="card-body">
-                                    <%= link_to "View Conversation", conversation_messages_path(conversation), class: "btn btn-outline-primary" %>
-                                </div>
-                            </div>
-                        </div>
-                    <% end %>
-                <% end %>
+<div class="container-lg my-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+      <h3 class="text-center text-primary mail-head">Mailbox</h3>
+      <div class="row shadow-lg p-3 rounded-4">
+        <% @conversations.each do |conversation| %>
+          <% if conversation.sender_id == current_user.id || conversation.recipent_id == current_user.id %>
+            <% recipent = conversation.sender_id == current_user.id ? User.find(conversation.recipent_id) : User.find(conversation.sender_id) %>
+            <% unread_count = current_user.unread_messages_count_in_conversation(conversation) %>
+            <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+              <div class="card border-primary h-10">
+                <div class="card-header custom-bg text-white position-relative">
+                  <h5 class="card-title"><%= recipent.name %></h5>
+                  <% if unread_count > 0 %>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= unread_count %>
+                      <span class="visually-hidden">unread messages</span>
+                    </span>
+                  <% end %>
+                </div>
+                <div class="card-body">
+                  <%= link_to "View Conversation", conversation_messages_path(conversation), class: "btn btn-outline-primary" %>
+                </div>
+              </div>
             </div>
-        </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>

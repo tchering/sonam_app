@@ -5,6 +5,8 @@ class User < ApplicationRecord
 
   has_one_attached :profile_picture
 
+  has_many :conversations, foreign_key: :sender_id, dependent: :destroy
+
   validates :profile_picture, content_type: { in: ['image/png', 'image/jpg', 'image/jpeg', 'image/gif'], message: 'Only PNG, JPG, JPEG, and GIF files are allowed.' },
                               size: { less_than: 5.megabytes, message: 'File size should be less than 5MB.' }
   has_many :microposts, dependent: :destroy
@@ -124,9 +126,9 @@ class User < ApplicationRecord
   # end
   # here id is not column name but it is  method of ActiveRecord::Base and it returns the id of the current user.
 
-#   When you call current_user.feed in your controller, current_user is an instance of the User class, and id is a method that returns the id of this user instance.
+  #   When you call current_user.feed in your controller, current_user is an instance of the User class, and id is a method that returns the id of this user instance.
 
-# So, Micropost.where('user_id = ?', id) is essentially saying "get all microposts where the user_id is equal to the id of the current user".
+  # So, Micropost.where('user_id = ?', id) is essentially saying "get all microposts where the user_id is equal to the id of the current user".
 
   def feed
     following_ids = "SELECT followed_id FROM relationships
@@ -153,6 +155,17 @@ class User < ApplicationRecord
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def unread_messages_count
+    Message.joins(:conversation)
+           .where(conversations: { sender_id: id }).or(Message.joins(:conversation).where(conversations: { recipent_id: id }))
+           .where('messages.user_id != ? AND messages.read = ?', id, false)
+           .count
+  end
+
+  def unread_messages_count_in_conversation(conversation)
+    conversation.messages.where('user_id != ? AND read = ?', id, false).count
   end
 
   private
