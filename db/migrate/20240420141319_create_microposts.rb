@@ -3,7 +3,6 @@ class CreateMicroposts < ActiveRecord::Migration[7.1]
     create_table :microposts do |t|
       t.text :content
       t.references :user, null: false, foreign_key: true
-
       t.timestamps
     end
     #i will add composite index on user_id and created_at columns to sort the microposts in reverse order of creation meaning the most recent microposts will be displayed first.
@@ -11,4 +10,4 @@ class CreateMicroposts < ActiveRecord::Migration[7.1]
   end
 end
 
-Here we have manually gave foreign_key 
+# Here we have manually gave foreign_key

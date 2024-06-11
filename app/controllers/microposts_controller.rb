@@ -25,16 +25,38 @@ class MicropostsController < ApplicationController
     end
   end
 
-  def destroy
+  def edit
     @micropost = Micropost.find(params[:id])
-    # user in @micropost.user is the user who created the micropost or instance of User model.
-    # Becuase we have defined the association in micropost.rb as belongs_to :user
+  end
+
+  def update
+    @micropost = Micropost.find(params[:id])
+
+    if @micropost.update(micropost_params)
+      redirect_to root_path, notice: 'Micropost was successfully updated.'
+    else
+      render :edit
+    end
+  end
+  # The destroy action is used to delete a micropost. It accepts the ID of the micropost
+  # as a parameter and finds the micropost by that ID. If the current user is an admin or the owner
+  # of the micropost, it deletes the micropost and sets a success message. If the user is neither
+  # an admin nor the owner of the micropost, it sets a danger message. It then redirects the user to
+  # the previous page they were on or the root path if they were not on a page.
+  def destroy
+    # Find the micropost by the ID passed in the params.
+    @micropost = Micropost.find(params[:id])
+
+    # Check if the current user is an admin or the owner of the micropost.
     if current_user.admin? || current_user == @micropost.user
+      # If the user is an admin or the owner of the micropost, delete the micropost and set a success message.
       @micropost.destroy
       flash[:success] = 'Micropost deleted'
     else
+      # If the user is neither an admin nor the owner of the micropost, set a danger message.
       flash[:danger] = "You don't have permission to delete this micropost"
     end
+    # Redirect the user to the previous page they were on or the root path if they were not on a page.
     redirect_to request.referrer || root_path
   end
 

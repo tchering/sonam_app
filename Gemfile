@@ -10,7 +10,6 @@ gem 'font-awesome-rails'
 gem 'rb-readline'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4', '~> 0.2.2'
-
 gem 'bcrypt'
 
 gem 'faker'
@@ -91,6 +90,7 @@ group :development do
   gem 'minitest-reporters'
   gem 'rails-erd'
 end
+
 group :production do
   gem 'aws-sdk-s3', require: false
   gem 'pg'

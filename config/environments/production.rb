@@ -73,9 +73,6 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "sonam_app_production"
 
-  config.action_mailer.asset_host = "https://www.tweetme.online"
-
-  config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -106,30 +103,9 @@ Rails.application.configure do
   #   enable_starttls_auto: true,
   # }
 
-  #this is for mailertogo
-  #    config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_url_options = { host: 'sonam-app.herokuapp.com'}
-  # config.action_mailer.smtp_settings = {
-  #   address: ENV["MAILERTOGO_SMTP_HOST"],
-  #   port: 587,
-  #   domain: "heroku.com",
-  #   user_name: ENV["MAILERTOGO_SMTP_USER"],
-  #   password: ENV["MAILERTOGO_SMTP_PASSWORD"],
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  # }
 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_url_options = { host: "sonam-app-b93ee43b86cc.herokuapp.com" }
-  # config.action_mailer.smtp_settings = {
-  #   :user_name => ENV["MAILTRAP_USERNAME"],
-  #   :password => ENV["MAILTRAP_PASSWORD"],
-  #   :address => "sandbox.smtp.mailtrap.io",
-  #   :host => "sandbox.smtp.mailtrap.io",
-  #   :port => "2525",
-  #   :authentication => :login,
-  # }
-
+  config.action_mailer.asset_host = "https://www.tweetme.online"
+  config.action_mailer.perform_caching = false
   #MAILGUN
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: "www.tweetme.online" }

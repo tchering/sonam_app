@@ -18,22 +18,8 @@
             <% end %>
         </div>
         <div>
-            <div id="preview" class="mt-2 text-center">
-                   <%= image_tag (@micropost.image.attached? ? @micropost.image : "tweetme.png"), class: "rounded", id: "micropost_image_preview", style: "width: 200px;" %>
-                </div>
-        <%= f.submit "Post", class: "btn btn-primary w-100 mt-3" %>
-        <%= f.file_field :image, class: "d-none", id: "micropost_image_file" %>
-        <%= f.label :image, "Upload Image", class: "btn btn-primary mt-2", for: "micropost_image_file" %>
+        <%= f.submit "Update", class: "btn btn-primary w-100 mt-3" %>
         </div>
     <% end %>
 </div>
   <% # <%= render "shared/error_messages", object: f.object %> 
-<script>
- document.getElementById("micropost_image_file").onchange = function () {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        document.getElementById("micropost_image_preview").src = e.target.result;
-    };
-    reader.readAsDataURL(this.files[0]);
-};
-</script>
