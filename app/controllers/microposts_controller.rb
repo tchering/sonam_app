@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: %i[create destroy index]
+  before_action :logged_in_user, only: %i[create destroy index edit update]
 
   def index
     redirect_to root_path
