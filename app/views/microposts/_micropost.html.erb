@@ -32,7 +32,7 @@
                     <%= fa_icon "trash" %> 
                 <% end %>
             <% end %>
-            <%= link_to "Edit", edit_micropost_path(micropost) %>
+            <%= link_to edit_micropost_path(micropost) do %> <%= fa_icon "edit" %> <% end %>
         </div>
     </div>
 </li>
