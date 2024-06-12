@@ -1,5 +1,4 @@
 require "test_helper"
-
 class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @micropost = microposts(:orange)
@@ -71,25 +70,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       assert_match micropost.content, response.body
     end
   end
-
-  # test "should create a micropost with image when logged in" do
-  #   log_in_as(@user)
-  #   content = "This micropost really ties the room together"
-  #   image = fixture_file_upload("test/fixtures/files/test_image.png", "image/png")
-  #   puts "Image: #{image.inspect}" # print out the image file
-  #   assert_difference "Micropost.count", 1 do
-  #     post microposts_path, params: { micropost: { content: content, image: image } }
-  #   end
-  #   assert_redirected_to root_url
-  #   follow_redirect!
-  #   assert_match content, response.body
-
-  #   # Validate the image upload
-  #   micropost = Micropost.last
-  #   puts "Micropost: #{micropost.inspect}" # print out the micropost
-  #   assert micropost.image.attached?
-  #   assert_select "img" # checks that an img tag exists in the response body
-  # end
 
   test "should create micropost with image" do
     log_in_as(@user)

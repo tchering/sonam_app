@@ -14,10 +14,6 @@
                      
             <span class="user"><%= link_to micropost.user.name, micropost.user, class: "username" %></span>
             <span class="content"><%= micropost.content + "." %></span>
-                
-            <% # .image is calling the image method on the micropost instance. This method was defined by the has_one_attached :image line in Micropost model. %>
-            <% # image_tag micropost.image if micropost.image.attached? %> 
-            <% # This above line is replaced by the below line to display the resize image in the feed because we have created method in micropost model display_image %>
             <div class="d-flex justify-content-center">
             <%= image_tag micropost.display_image, class: "image" if micropost.image.attached? %>
             </div>
