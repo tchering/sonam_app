@@ -28,7 +28,9 @@
                     <%= fa_icon "trash" %> 
                 <% end %>
             <% end %>
+            <% if current_user == micropost.user %>
             <%= link_to edit_micropost_path(micropost) do %> <%= fa_icon "edit" %> <% end %>
+            <% end %>
         </div>
     </div>
 </li>
